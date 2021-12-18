@@ -3,8 +3,8 @@
   "description": "minimal notifying tool for Raku.",
   "version": "0.0.5",
   "perl": "6.*",
-  "authors": [
-    "ohmycloudy@gmail.com"
+  "auth": [
+    "zef:ohmycloudy"
   ],
   "depends": [],
   "provides": {
