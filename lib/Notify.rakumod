@@ -1,4 +1,4 @@
-unit class Notify:ver<0.0.5>;
+unit class Notify:ver<0.0.6>;
 
 has $.title is rw;
 has $.msg is rw;
@@ -8,13 +8,8 @@ has $.msg-type is rw;
 method !notify-command-windows(:$title, :$msg, :$duration-time=Nil, :$msg-type='info') {
     my @command = ["notify-send"];
     @command.append([$title, $msg]);
-    if $duration-time.defined {
-        @command.append(["-t", $duration-time.Str]);
-    }
-
-    if $msg-type.defined  {
-        @command.append(["-i", $msg-type]);
-    }
+    @command.append(["-t", $duration-time.Str]) with $duration-time;
+    @command.append(["-i", $msg-type]) with $msg-type;
 
     return @command;
 }
@@ -34,10 +29,8 @@ method !notify-command-osx(:$msg, :$msg-type=1, :$duration-time=Nil, :$title="")
     my @command = ["/usr/bin/osascript", "-e"];
     my $tpl = 'display notification "%s" %s with title "{$title}"';
     my $sound = "";
-    if $msg-type.defined {
-        $sound = 'sound name "/System/Library/Sounds/Ping.aiff"';
-    }
-    
+    $sound = 'sound name "/System/Library/Sounds/Ping.aiff"' with $msg-type;
+
     @command.append($tpl.sprintf($msg, $sound));
     return @command;
 }

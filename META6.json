@@ -1,7 +1,7 @@
 {
   "name": "Notify",
   "description": "minimal notifying tool for Raku.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "perl": "6.*",
   "auth": "zef:ohmycloudy",
   "authors": ["ohmycloud <ohmycloudy@gmail.com>"],
